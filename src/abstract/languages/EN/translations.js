@@ -34,7 +34,8 @@ module.exports = {
         KICK_CASE_TEXT: "**{user}** has been kicked from the server by **{mod}**.",
         CREATE_THREAD_REASON: "Created the thread because modlogs plugin is active",
         BANNED_DM_BODY: `You have been banned by **{mod}** for the reason: **{reason}**`,
-        KICKED_DM_BODY: `You have been kicked by **{mod}** for the reason: **{reason}**`
-
+        KICKED_DM_BODY: `You have been kicked by **{mod}** for the reason: **{reason}**`,
+        CHANNEL_NUKED: "The channel has been successfuly nuked.",
+        NUKED_BY: "Nuked by {user}",
     }
 }
