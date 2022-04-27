@@ -1,5 +1,5 @@
 const { Client, Intents } = require("discord.js");
-const { GUILDS, GUILD_VOICE_STATES, GUILD_MESSAGES } = Intents.FLAGS;
+const { GUILDS, GUILD_VOICE_STATES, GUILD_MESSAGES, GUILD_BANS } = Intents.FLAGS;
 const Cluster = require("discord-hybrid-sharding")
 const Database = require("./modules/MongoDB");
 const CommandService = require("./modules/CommandHandler");
@@ -14,7 +14,7 @@ class BaseClient extends Client {
             restTimeOffset: 600,
             shards: Cluster.data.SHARD_LIST,
             shardCount: Cluster.data.TOTAL_SHARDS,
-            intents: [GUILDS, GUILD_VOICE_STATES, GUILD_MESSAGES]
+            intents: [GUILDS, GUILD_VOICE_STATES, GUILD_MESSAGES, GUILD_BANS]
         });
 
         this._ready = true;
