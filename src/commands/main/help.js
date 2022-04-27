@@ -5,7 +5,7 @@ class Help extends BaseCommand {
         super({
             name: "help",
             category: "main",
-            description: "Displays all the commands of the bot. If you provide the name of a commands, it will return all available information about this command.",
+            description: "Displays all the commands of the bot.",
             arguments: [
                 { name: "command", description: "The command you want to have informations", required: true, type: 3 }
             ],

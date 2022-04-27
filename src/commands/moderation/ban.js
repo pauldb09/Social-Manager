@@ -7,6 +7,7 @@ class Ban extends BaseCommand {
             requiredPermissions: ["BAN_MEMBERS"],
             allowDM: false,
             cooldown: 5,
+            name: "ban",
             required: { vote: false, premium: false, owner: false },
             description: "Bans a user from the server",
             arguments: [

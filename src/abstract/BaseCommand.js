@@ -1,4 +1,5 @@
-class BaseCommand {
+const EventEmitter = require("events");
+class BaseCommand extends EventEmitter {
     constructor(command) {
         super();
         this.name = command.name;
