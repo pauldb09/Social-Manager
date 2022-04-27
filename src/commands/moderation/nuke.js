@@ -5,6 +5,7 @@ class Ban extends BaseCommand {
         super({
             enabled: true,
             requiredPermissions: ["MANAGE_CHANNELS"],
+            botPerms: ["MANAGE_CHANNELS"],
             allowDM: false,
             cooldown: 5,
             name: "nuke",

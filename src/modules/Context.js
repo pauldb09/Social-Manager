@@ -1,5 +1,6 @@
 "use strict";
 const { getFile } = require("../abstract/languages")
+const permissions = require("../abstract/languages/permissions.json")
 class Context {
     constructor(s, e, t, r) {
         (this.message = s), (this.client = e), (this.args = t), (this.guildDB = r);
@@ -24,7 +25,9 @@ class Context {
         const locale = (localeSet ? localeSet : this.guildDB.locale) || "EN";
         let file = getFile(locale);
         if (!file.keys[key]) {
-            return console.error("[Translation] Unknow text Id " + key + " for locale " + locale + "")
+            if (permissions[key]) return permissions[key][locale];
+            console.error("[Translation] Unknow text Id " + key + " for locale " + locale + "")
+            return `${key}`;
         }
         const text = file.keys[key];
         args.forEach(arg => {

@@ -23,6 +23,9 @@ class Ban extends BaseCommand {
     async run(e) {
         if (e.options.getBoolean("reset")) {
             if (!e.guildDB.modlogs) return e.err(e.translate("PLUGIN_NOT_ENABLED"));
+            e.guildDB.modlogs = null;
+            this.client.database.handleCache(e.guildDB);
+            return e.success(e.translate("PLUGIN_DISABLED"));
         }
         const channel = e.options.getChannel("channel");
         if (!channel || channel.guild.id !== e.guild.id) return e.err(e.translate("CHANNEL_NOT_FOUND"));
@@ -32,7 +35,7 @@ class Ban extends BaseCommand {
         if (!["GUILD_TEXT", "GUILD_NEWS"].includes(channel.type)) return e.err(e.translate("CHANNEL_NOT_TEXT"));
         const send_thread = e.options.getBoolean("thread_for_case");
         if (e.guildDB.modlogs && e.guildDB.modlogs.channel && e.guildDB.modlogs.channel === channel.id) {
-            if (e.guildDB.modlogs.send_thread === send_thread) return e.err(e.translate("SAME_SETTINGS_MODLOGS"));
+            if (e.guildDB.modlogs.send_thread === send_thread) return e.err(e.translate("SAME_SETTINGS"));
             else {
                 e.guildDB.modlogs.send_thread = send_thread;
                 this.client.database.handleCache(e.guildDB);

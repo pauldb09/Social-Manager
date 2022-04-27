@@ -22,7 +22,7 @@ module.exports = {
         CHANNEL_NOT_TEXT: "The channel you provided is not a text channel.",
         PLUGIN_NOT_ENABLED: "The plugin you want to disable is not enabled.",
         CHANNEL_ALREADY_SET: "The channel you provided is already the channel set for this plugin.",
-        SAME_SETTINGS_MODLOGS: "The settings you provided are the same as the current settings.",
+        SAME_SETTINGS: "The settings you provided are the same as the current settings.",
         SET_THREAD_MODLOGS: "The modlogs plugin has been set to send a thread for each case.",
         SET_NO_THREAD_MODLOGS: "The modlogs plugin has been set to not send a thread for each case.",
         SET_MODLOGS: "The modlogs plugin has been successfully configured in {channel}.",
@@ -35,7 +35,10 @@ module.exports = {
         CREATE_THREAD_REASON: "Created the thread because modlogs plugin is active",
         BANNED_DM_BODY: `You have been banned by **{mod}** for the reason: **{reason}**`,
         KICKED_DM_BODY: `You have been kicked by **{mod}** for the reason: **{reason}**`,
-        CHANNEL_NUKED: "The channel has been successfuly nuked.",
+        CHANNEL_NUKED: "<:unknown43:968885935204872202> The channel has been successfuly nuked.",
         NUKED_BY: "Nuked by {user}",
+        SET_AUTOPOST: "The Auto-Publish plugin has been successfully configured in {channel}.\nThe bot will now automatically publish every single message from this channel.",
+        PLUGIN_DISABLED: "Successfuly disabled this plugin!",
+
     }
 }
