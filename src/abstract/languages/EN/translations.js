@@ -26,5 +26,11 @@ module.exports = {
         SET_THREAD_MODLOGS: "The modlogs plugin has been set to send a thread for each case.",
         SET_NO_THREAD_MODLOGS: "The modlogs plugin has been set to not send a thread for each case.",
         SET_MODLOGS: "The modlogs plugin has been successfully configured in {channel}.",
+        KICKED_DM: "You have been kicked from",
+        KICKED_SUCCESS: "Successfully kicked **{user}** from the server.",
+        REASON: "Reason",
+        CASE_ID: "Case ID",
+        BAN_CASE_TEXT: "**{user}** has been banned from the server by **{mod}**.",
+        KICK_CASE_TEXT: "**{user}** has been kicked from the server by **{mod}**.",
     }
 }

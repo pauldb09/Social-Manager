@@ -14,6 +14,7 @@ class Ready extends BaseEvent {
         const serv_data = await this.client.database.getServer(ban.guild.id);
         if (serv_data && serv_data.modlogs) {
             const channel = ban.guild.channels.cache.get(serv_data.modlogs.channel);
+            if (serv_data.cases.find(e => e.reason === ban.reason && e.target.id === ban.user.id)) return;
             if (channel) channel.send({
                 embeds: [{
                     author: {

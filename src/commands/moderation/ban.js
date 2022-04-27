@@ -55,6 +55,21 @@ class Ban extends BaseCommand {
                 days: days
             })
             .then(() => {
+                this.client.database.generateCase({
+                    target: {
+                        tag: user.tag,
+                        id: user.id,
+                        avatar: user.displayAvatarURL({ format: "png", size: 512 }),
+                    },
+                    type: "BAN",
+                    mod: {
+                        tag: e.author.tag,
+                        id: e.author.id,
+                        avatar: e.author.displayAvatarURL({ format: "png", size: 512 }),
+                    },
+                    reason: reason,
+                    text: e.translate("BAN_CASE_TEXT").replace("{user}", member.user.tag).replace("{mod}", e.author.tag),
+                }, e)
                 e.success(e.translate("BANNED_SUCCESS").replace("{user}", member.user.tag).replace("{days}", days));
             })
             .catch(err => {

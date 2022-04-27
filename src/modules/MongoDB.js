@@ -1,6 +1,7 @@
 const mongoose = require("mongoose"),
     guildData = require("../models/guildData"),
     config = require("../../config");
+const uuidv4 = require("uuid/v4");
 
 class MongoDB {
     constructor(client) {
@@ -22,6 +23,34 @@ class MongoDB {
                 console.log("MongoDB:`, `Connected");
                 return mongoose
             });
+    }
+
+    async generateCase(data, ctx) {
+        const case_id = uuidv4();
+        if (ctx.guildDB.modlogs) {
+            const channel = ctx.guild.channels.cache.get(ctx.guildDB.modlogs.channel);
+            if (channel) channel.send({
+                embeds: [{
+                    author: {
+                        name: `${data.target.tag} (${data.target.id})`,
+                        icon_url: data.target.avatar
+                    },
+                    description: `${data.text}\n\n**<:unknown43:968885935204872202> ${ctx.translate("REASON")}:** ${data.reason}`,
+                    color: "#ff5858",
+                    footer: {
+                        text: `${ctx.translate("CASE_ID")}: ${case_id}`
+                    },
+                    timestamp: new Date(),
+                }],
+
+            })
+        }
+        ctx.guildDB.cases.push({
+            id: case_id,
+            data: data,
+        });
+        this.handleCache(ctx.guildDB);
+        return { id: case_id, data: data };
     }
 
     async handleCache(newData) {
