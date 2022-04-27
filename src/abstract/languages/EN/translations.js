@@ -44,6 +44,7 @@ module.exports = {
         CASE_ERROR: "The case has been removed from the database but i'm not able to unpunish the user.",
         UNEXPECTED_ERROR: "An unexpected error has occured while running your interaction! Please report this error in [Social Manager's server](https://social-manager.net/support)",
         CASE_NOT_FOUND: "No case found with this Id.",
-        CASE_REMOVED: `Case deleted by {user}`
+        CASE_REMOVED: `Case deleted by {user}`,
+        NUKE_CASE_TEXT: `**{user}** just nuked the {channel} channel`
     }
 }
