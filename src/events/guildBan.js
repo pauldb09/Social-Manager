@@ -13,7 +13,7 @@ class Ready extends BaseEvent {
     async run(ban) {
         const serv_data = await this.client.database.getServer(ban.guild.id);
         if (serv_data && serv_data.modlogs) {
-            const channel = ban.guild.channels.cache.get(serv_data.modlogs.channe);
+            const channel = ban.guild.channels.cache.get(serv_data.modlogs.channel);
             if (channel) channel.send({
                 embeds: [{
                     author: {
