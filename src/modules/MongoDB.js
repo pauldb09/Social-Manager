@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
     guildData = require("../models/guildData"),
     config = require("../../config");
-const uuidv4 = require("uuidv4");
+const { uuid } = require("uuidv4");
 
 class MongoDB {
     constructor(client) {
@@ -26,7 +26,7 @@ class MongoDB {
     }
 
     async generateCase(data, ctx) {
-        const case_id = uuidv4();
+        const case_id = uuid();
         if (ctx.guildDB.modlogs) {
             const channel = ctx.guild.channels.cache.get(ctx.guildDB.modlogs.channel);
             if (channel) channel.send({
