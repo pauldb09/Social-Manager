@@ -14,9 +14,9 @@ class Ready extends BaseEvent {
         await interaction.deferReply();
         if (interaction.isCommand()) {
             if (interaction.channel.type === "DM") return interaction.editReply(`Slash commands can't be used inside dms!\n\n• Invite the bot to your server: https://social-manager.net/invite`);
-            const command = this.client.commands.get(interaction.commandName);
-            const serverData = await this.database.getServer(interaction.guildId)
-            const context = new Context(interaction, interaction.client, interaction.options, serverData);
+            const command = this.client.commands.commands.get(interaction.commandName);
+            const serverData = await this.client.database.getServer(interaction.guildId)
+            const context = new Context(interaction, interaction.client, interaction.options.data, serverData);
             command.run(context);
         }
     }

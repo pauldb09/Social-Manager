@@ -1,7 +1,7 @@
 "use strict";
 const { getFile } = require("../abstract/languages")
 class Context {
-    constructor(e, s, t, r) {
+    constructor(s, e, t, r) {
         (this.message = s), (this.client = e), (this.args = t), (this.guildDB = r);
     }
     get guild() {
@@ -23,7 +23,6 @@ class Context {
         if (!args) args = [];
         const locale = (localeSet ? localeSet : this.guildDB.locale) || "EN";
         let file = getFile(locale);
-        console.log(file);
         if (!file.keys[key]) {
             return console.error("[Translation] Unknow text Id " + key + " for locale " + locale + "")
         }
@@ -34,7 +33,6 @@ class Context {
             text.replace(x, arg.value)
             text
         })
-        console.log(text);
         return text.replace("{prefix}", this.guildDB.prefix).replace("{prefix}", this.guildDB.prefix).replace("{prefix}", this.guildDB.prefix);
     }
     get user() {
