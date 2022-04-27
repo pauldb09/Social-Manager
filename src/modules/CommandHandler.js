@@ -1,7 +1,9 @@
 const { readdirSync } = require("fs"), { Collection } = require("@discordjs/collection");
 class CommandHandler {
     constructor(n) {
-        (this.client = n), (this.commands = new Collection());
+        this.client = n;
+        this.commands = new Collection();
+        this.build();
     }
     build() {
         const n = readdirSync(`${this.client.location}/src/commands`, { withFileTypes: !0 });
