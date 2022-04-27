@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
     guildData = require("../models/guildData"),
     config = require("../../config"),
-   { v4: uuidv4 } = require('uuid');
+    { v4: uuidv4 } = require('uuid');
 class MongoDB {
     constructor(client) {
         this.client = client;
@@ -22,6 +22,14 @@ class MongoDB {
                 console.log("MongoDB:`, `Connected");
                 return mongoose
             });
+    }
+
+    async removeCase(
+        case, guildDB) {
+        guildDB.cases = guildDB.cases.filter(c => c.id !==
+            case .id);
+        this.handleCache(guildDB);
+        return guildDB;
     }
 
     async generateCase(data, ctx) {
@@ -49,9 +57,12 @@ class MongoDB {
                                 },
                                 timestamp: new Date(),
                             }],
-                            
+                            components: [{
+                                type: "ACTION_ROW",
+                                components: [{ customId: "delete_case_" + case_id + "", style: 4, label: ctx.translate("REMOVE_CASE") }]
+                            }]
 
-                        },))
+                        }, ))
                         .catch(console.error);
                 } else {
 
@@ -68,6 +79,10 @@ class MongoDB {
                             },
                             timestamp: new Date(),
                         }],
+                        components: [{
+                            type: "ACTION_ROW",
+                            components: [{ customId: "clear_case_" + case_id + "", style: 4, label: ctx.translate("REMOVE_CASE") }]
+                        }]
 
                     })
                 }
@@ -83,12 +98,12 @@ class MongoDB {
     }
 
     async handleCache(newData) {
-       this.knowGuilds[newData.serverId] = newData
+        this.knowGuilds[newData.serverId] = newData
         newData.save();
         return newData;
     }
 
-    async getServer(serverId,cache) {
+    async getServer(serverId, cache) {
         if (this.state !== 2) return console.error("[MongoDB] Error: MongoDB is not connected.");
         if (this.knowGuilds.includes(serverId)) return this.knowGuilds[serverId];
         let o = await guildData.findOne({ serverId: serverId });

@@ -33,6 +33,10 @@ class Ready extends BaseEvent {
                 }
             }
             command.run(context);
+        } else if (interaction.isButton()) {
+            if (interaction.customId.startsWith("clear_case")) {
+                const case_id = interaction.customId.split("_")[2];
+            }
         }
     }
 }

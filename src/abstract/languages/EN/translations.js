@@ -39,6 +39,7 @@ module.exports = {
         NUKED_BY: "Nuked by {user}",
         SET_AUTOPOST: "The Auto-Publish plugin has been successfully configured in {channel}.\nThe bot will now automatically publish every single message from this channel.",
         PLUGIN_DISABLED: "Successfuly disabled this plugin!",
+        REMOVE_CASE: "Remove case"
 
     }
 }

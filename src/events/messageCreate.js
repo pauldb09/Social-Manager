@@ -10,8 +10,10 @@ class Ready extends BaseEvent {
     }
 
     async run(message) {
+        if (message.author.bot) return
+
         const serverData = await this.client.database.getServer(message.guildId)
-        if (serverData.autopost === e.channel.id) {
+        if (serverData.autopost && serverData.autopost === message.channel.id) {
             if (!e.crosspostable) {
                 if (serverData.botChannel) {
                     const botChannel = message.guild.channels.cache.get(serverData.botChannel)
@@ -31,7 +33,7 @@ class Ready extends BaseEvent {
                     }
                 }
             }
-            e.crosspost()
+            message.crosspost()
                 .then(() => {
                     if (serverData.botChannel) {
                         const botChannel = message.guild.channels.cache.get(serverData.botChannel)
