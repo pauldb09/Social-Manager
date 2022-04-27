@@ -12,8 +12,8 @@ class Ban extends BaseCommand {
             description: "Sets the modlogs channel",
             arguments: [
                 { name: "channel", description: "The channel you want to set as modlog channel", required: true, type: 7 },
-                { name: "thread_for_case", description: "If you want to create a new thread for each case. Pretty usefull", required: true, type: 57 },
-                { name: "reset", description: "Resets the modlog plugin", required: false, type: 57 },
+                { name: "thread_for_case", description: "If you want to create a new thread for each case. Pretty usefull", required: true, type: 5 },
+                { name: "reset", description: "Resets the modlog plugin", required: false, type: 5 },
 
             ]
         });
