@@ -1,27 +1,32 @@
 const mongoose = require("mongoose"),
     guildData = require("../models/guildData"),
-    config = require("../../config"),
-    fetch = require("node-fetch");
+    config = require("../../config");
+
 class MongoDB {
-    constructor(e) {
-        this.client = e;
+    constructor(client) {
+        this.client = client;
+        this.state = 0;
+        this.connect();
     }
     async connect() {
-        return (
-            mongoose.connect(config.mongo.url, config.mongo.options).catch((e) => {
+        this.sate = 1;
+        mongoose.connect(config.mongo.url, config.mongo.options)
+            .catch((err) => {
                 console.error("MongoDB:`, `Error\n", e);
-            }),
-            mongoose
-        );
+                this.state = 1;
+                return null
+            })
+            .then(() => {
+                this.state = 2;
+                console.log("MongoDB:`, `Connected");
+                return mongoose
+            });
     }
-    async getServer(e) {
-        let o = await guildData.findOne({ serverID: e });
-        return o || (o = await new guildData({ serverID: e, prefix: "*", lang: "en", color: "#3A871F" }).save()), o;
-    }
-    async checkPremium(e) {
-        const o = config.premium.url + "premiumguild?token=" + config.premium.token + "&guildid=" + e,
-            n = await fetch(o).catch((e) => console.error(e));
-        return await n.json();
+
+    async getServer(serverId) {
+        if (this.state !== 2) return console.error("[MongoDB] Error: MongoDB is not connected.");
+        let o = await guildData.findOne({ serverId: serverId });
+        return o || (o = await new guildData({ serverId: serverId }).save()), o;
     }
 }
 module.exports = MongoDB;
