@@ -16,11 +16,31 @@ class Help extends KongouCommand {
         return [{ name: "user", description: "The user you want to ban from the server", required: true }];
     }
     run({ ctx: e }) {
-        let sent = false;
-        e.member.send({
-            embeds: []
-        });
-        e.reply(e.translate("HELP_SENT_DM"))
+        if (!e.args[0]) {
+            let sent = false;
+            e.member.send({
+                embeds: [{
+                    author: {
+                        name: e.clientUser.username,
+                        icon_url: e.clientUser.displayAvatarURL({ format: "png", size: 512 }),
+                    },
+                    description: e.translate("HELP_MAIN"),
+                }],
+                components: [{
+                    components: [
+                        { label: e.translate("SUPPORT_SERVER"), url: "https://social-manager.net/support", style: 5, type: "BUTTON" },
+                        { label: e.translate("USER_GUIDE"), url: "https://guide.social-manager.net/", style: 5, type: "BUTTON" }
+                    ],
+                    type: 'ACTION_ROW'
+                }]
+            }).catch(() => {
+                sent = false
+            })
+            if (sent) e.err(e.translate("HELP_SENT_DM"))
+            else e.err(e.translate("HELP_SENT_DM_FAILED"))
+        } else {
+
+        }
     }
 }
 module.exports = Help;
