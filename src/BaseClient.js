@@ -17,6 +17,7 @@ class BaseClient extends Client {
             intents: [GUILDS, GUILD_VOICE_STATES, GUILD_MESSAGES]
         });
 
+        this._ready = true;
         this.location = process.cwd();
         this.database = new Database(this);
         this.commands = new CommandService(this);
@@ -30,9 +31,13 @@ class BaseClient extends Client {
      * @returns {BaseClient}
      */
     async start(options) {
-        if (!options) throw new Error("No options provided.");
-        this.login(options.token);
-
+        if (!options) throw new ClientError("No options provided.");
+        this.login(options.token).catch(err => {
+            this.ready = false
+            console.log(err)
+        })
+        if (this.ready) return this
+        else throw new ClientError("Client can't enter ready do to some errors;")
     }
 }
 module.exports = BaseClient;

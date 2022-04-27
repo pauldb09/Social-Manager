@@ -1,16 +1,18 @@
-const KongouEvent = require("../abstract/BaseEvent.js");
-class Ready extends KongouEvent {
-    get name() {
-        return "ready";
+const BaseEvent = require("../abstract/BaseEvent.js");
+class Ready extends BaseEvent {
+    constructor(client) {
+        super({
+            name: "ready",
+            once: true,
+        });
+        this.client = client;
     }
-    get once() {
-        return !0;
-    }
+
     async run() {
-        this.client.user.setActivity({ name: "*help - green-bot.app", type: "WATCHING" }),
-            setInterval(() => {
-                this.client.user.setActivity("*help - green-bot.app", { type: "WATCHING" });
-            }, 1e3 * 60 * 30);
+        this.client.user.setActivity({ name: "/help - social-manager.net", type: "WATCHING" });
+        setInterval(() => {
+            this.client.user.setActivity("/help - social-manager.net", { type: "WATCHING" });
+        }, 1e3 * 60 * 30);
     }
 }
 module.exports = Ready;
