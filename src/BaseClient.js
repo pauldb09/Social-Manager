@@ -22,7 +22,7 @@ class BaseClient extends Client {
         this.database = new Database(this);
         this.commands = new CommandService(this);
         this.events = new EventHandler(this);
-        this._errrors = [];
+        this._errors = [];
 
         ["multipleResolves", "uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection"].forEach((event) => {
             process.on(event, (e) => {
@@ -62,8 +62,8 @@ class BaseClient extends Client {
         if (options.error === undefined || options.error === null) throw new ClientError("No error provided.");
         if (options.crash) new ClientError(error);
         console.log(options.error);
-        this.error.push({
-            error: option.error,
+        this._errors.push({
+            error: options.error,
             date: new Date(),
             location: options.location
         })

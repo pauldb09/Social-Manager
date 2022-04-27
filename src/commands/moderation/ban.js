@@ -19,7 +19,7 @@ class Ban extends BaseCommand {
         this.client = client;
     }
 
-    run({ ctx: e }) {
+    async run({ ctx: e }) {
         const user = e.user;
         if (!user || !user.guild || user.guild && user.guild.id !== e.guild.id) return e.err(e.translate("USER_NOT_FOUND"));
         if (user.id === e.clientUser.id || user.id === e.author.id || user.id === e.guild.ownerId) return e.err(e.translate("USER_NOT_BANABLE"));

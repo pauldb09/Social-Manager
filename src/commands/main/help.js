@@ -1,5 +1,6 @@
-const KongouCommand = require("../../abstract/KongouCommand.js");
-class Help extends KongouCommand {
+const BaseCommand = require("../../abstract/BaseCommand.js");
+
+class Help extends BaseCommand {
     constructor(client) {
         super({
             name: "help",
