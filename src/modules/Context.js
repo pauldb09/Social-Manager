@@ -42,10 +42,10 @@ class Context {
         return this.message.options
     }
     err(e) {
-        return this.message.editReply({ embeds: [{ description: `${this.message.guild.me.permissionsFor(this.message.channel).has("USE_EXTERNAL_EMOJIS") ?"<:social_error:968882669045813278>":"❌"}` + e, color: "#C73829" }] });
+        return this.message.editReply({ embeds: [{ description: `${this.message.guild.me.permissionsIn(this.message.channel).has("USE_EXTERNAL_EMOJIS") ?"<:social_error:968882669045813278>":"❌"}` + e, color: "#C73829" }] });
     }
     success(e) {
-        return this.message.editReply({ embeds: [{ description: `${this.message.guild.me.permissionsFor(this.message.channel).has("USE_EXTERNAL_EMOJIS") ?"<:social_success:968849497075642380>":"✅"}` + e, color: "#ff5858" }] });
+        return this.message.editReply({ embeds: [{ description: `${this.message.guild.me.permissionsIn(this.message.channel).has("USE_EXTERNAL_EMOJIS") ?"<:social_success:968849497075642380>":"✅"}` + e, color: "#ff5858" }] });
     }
 }
 module.exports = Context;
