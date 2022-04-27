@@ -46,10 +46,10 @@ class BaseClient extends Client {
     async start(options) {
         if (!options) throw new ClientError("No options provided.");
         this.login(options.token).catch(err => {
-            this.ready = false
+            this._ready = false
             console.log(err)
         })
-        if (this.ready) return this
+        if (this._ready) return this
         else throw new ClientError("Client can't enter ready do to some errors;")
     }
 
