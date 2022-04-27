@@ -39,7 +39,7 @@ class Ready extends BaseEvent {
 
                 if (interaction.customId.startsWith("delete_case_")) {
                     const case_id = interaction.customId.split("_")[2];
-                    const del = await this.client.database.removeCase(case_id, serverData, interaction.guild, interaction.member.user.tag);
+                    const del = await this.client.database.removeCase(case_id, serverData, context);
                     if (del) {
                         context.success(context.translate("CASE_DELETED").replace(`{case}`, case_id));
                     } else if (del == "not found") {
@@ -52,13 +52,13 @@ class Ready extends BaseEvent {
 
 
             }
-        } catch {
-            this.err("An unexpected error has occured while running your interaction! Please report this error in [Social Manager's server](https://social-manager.net/support)");
-
+        } catch (err) {
+            console.log(err);
+            this.err("An unexpected error has occured while running your interaction! Please report this error in [Social Manager's server](https://social-manager.net/support)", interaction);
         }
     }
     err(e, interaction) {
-        return interaction.editReply({ embeds: [{ description: `${interaction.guild.me.permissionsIn(interaction.channel).has("USE_EXTERNAL_EMOJIS") ?"<:social_error:968882669045813278> ":"❌ "}` + e, color: "#C73829" }] });
+        return interaction.editReply({ embeds: [{ description: `${this.message.guild.roles.everyone.permissions.has("USE_EXTERNAL_EMOJIS") ?"<:social_error:968882669045813278> ":"❌ "}` + e, color: "#C73829" }] });
     }
 
 }
