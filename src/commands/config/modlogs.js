@@ -29,7 +29,7 @@ class Ban extends BaseCommand {
         if (!channel.permissionsFor(e.guild.me).has("VIEW_CHANNEL") || !channel.permissionsFor(e.guild.me).has("SEND_MESSAGES") || !channel.permissionsFor(e.guild.me).has("EMBED_LINKSS")) {
             return e.err(e.translate("CHANNEL_NO_PERMISSIONS"));
         }
-        if (!this.client.validTexts.includes(channel.type)) return e.err(e.translate("CHANNEL_NOT_TEXT"));
+        if (!["GUILD_TEXT", "GUILD_NEWS"].includes(channel.type)) return e.err(e.translate("CHANNEL_NOT_TEXT"));
         const send_thread = e.options.getBoolean("thread_for_case");
         if (e.guildDB.modlogs && e.guildDB.modlogs.channel && e.guildDB.modlogs.channelId === channel.id) {
             if (e.guildDB.modlogs.send_thread === send_thread) return e.err(e.translate("SAME_SETTINGS_MODLOGS"));

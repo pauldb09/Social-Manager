@@ -8,6 +8,5 @@ module.exports = {
             connectTimeoutMS: 5e4
         },
     },
-    validText: ["GUILD_TEXT", "GUILD_NEWS"],
     token: "",
 };
