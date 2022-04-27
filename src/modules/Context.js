@@ -43,7 +43,7 @@ class Context {
     err(e) {
         return this.message.editReply({ embeds: [{ description: e, color: "#C73829" }] });
     }
-    successMessage(e) {
+    succes(e) {
         return this.message.editReply({ embeds: [{ description: e, color: "#3A871F" }] });
     }
 }
