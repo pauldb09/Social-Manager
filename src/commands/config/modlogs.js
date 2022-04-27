@@ -31,7 +31,8 @@ class Ban extends BaseCommand {
         }
         if (!["GUILD_TEXT", "GUILD_NEWS"].includes(channel.type)) return e.err(e.translate("CHANNEL_NOT_TEXT"));
         const send_thread = e.options.getBoolean("thread_for_case");
-        if (e.guildDB.modlogs && e.guildDB.modlogs.channel && e.guildDB.modlogs.channelId === channel.id) {
+        console.log(send_thread)
+        if (e.guildDB.modlogs && e.guildDB.modlogs.channel && e.guildDB.modlogs.channel === channel.id) {
             if (e.guildDB.modlogs.send_thread === send_thread) return e.err(e.translate("SAME_SETTINGS_MODLOGS"));
             else {
                 e.guildDB.modlogs.send_thread = send_thread;

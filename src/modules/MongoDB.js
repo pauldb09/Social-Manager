@@ -25,9 +25,10 @@ class MongoDB {
     }
 
     async handleCache(newData) {
-        if (!this.knowGuilds.includes(newData.serverId)) return null;
-        this.knowGuilds[newData.serverId] = newData;
+        if (!this.knowGuilds.includes(newData.serverId)) return newData.save();
+        delete this.knowGuilds[serverId];
         newData.save();
+        this.knowGuilds[serverId] = newData
         return newData;
     }
 
