@@ -7,7 +7,7 @@ const ClientError = require("./modules/ClientError");
 const EventHandler = require("./modules/EventHandler");
 
 class BaseClient extends Client {
-    constructor(options) {
+    constructor() {
         super({
             disableMentions: "everyone",
             restRequestTimeout: 4e4,
@@ -22,7 +22,20 @@ class BaseClient extends Client {
         this.database = new Database(this);
         this.commands = new CommandService(this);
         this.events = new EventHandler(this);
+        this._errrors = [];
 
+        ["multipleResolves", "uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection"].forEach((event) => {
+            process.on(event, (e) => {
+                this.error({
+                    error: e,
+                    location: {
+                        type: "PROCESS",
+                        file: "BaseClient",
+                        event: event
+                    }
+                })
+            });
+        });
     }
 
     /**
@@ -38,6 +51,23 @@ class BaseClient extends Client {
         })
         if (this.ready) return this
         else throw new ClientError("Client can't enter ready do to some errors;")
+    }
+
+    /**
+     * @description Registers an error
+     * @param {objet} options
+     * @returns {Boolean}
+     */
+    async error(options) {
+        if (options.error === undefined || options.error === null) throw new ClientError("No error provided.");
+        if (options.crash) new ClientError(error);
+        console.log(options.error);
+        this.error.push({
+            error: option.error,
+            date: new Date(),
+            location: options.location
+        })
+        return true
     }
 }
 module.exports = BaseClient;

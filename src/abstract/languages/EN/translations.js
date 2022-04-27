@@ -11,5 +11,6 @@ module.exports = {
         HELP_MAIN: `You can use my commands by pressing the "/" key! You will get a list of all available commands!\nIf you want more information about a command, just type \`/help <command>\`!\n\nIf you need any help or want to suggest something, feel free to [join the support server](https://social-manager/support) and ask for help!`,
         SUPPORT_SERVER: "Support Server",
         USER_GUIDE: "User Guide",
+        USER_NOT_BANABLE: "This user can't be banned from the server.",
     }
 }
