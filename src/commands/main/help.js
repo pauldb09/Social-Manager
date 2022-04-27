@@ -18,6 +18,7 @@ class Help extends BaseCommand {
         if (!e.args[0]) {
             let sent = false;
             e.member.send({
+                color: "#ff5858",
                 embeds: [{
                     author: {
                         name: e.clientUser.username,

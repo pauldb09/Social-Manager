@@ -17,6 +17,7 @@ class Ready extends BaseEvent {
             const command = this.client.commands.commands.get(interaction.commandName);
             const serverData = await this.client.database.getServer(interaction.guildId)
             const context = new Context(interaction, interaction.client, interaction.options.data, serverData);
+            if (command.required && command.required.owner && context.author.id !== context.guild.ownerId) return context.err("You need to be the Server Owner to use this command for security reasons!");
             command.run(context);
         }
     }

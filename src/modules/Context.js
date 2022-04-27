@@ -36,13 +36,16 @@ class Context {
         return text.replace("{prefix}", this.guildDB.prefix).replace("{prefix}", this.guildDB.prefix).replace("{prefix}", this.guildDB.prefix);
     }
     get user() {
-        return this.message.options.length > 0 ? this.message.options.getMember("member") : null;
+        return this.message.options.getMember("user")
+    }
+    get options() {
+        return this.message.options
     }
     err(e) {
-        return this.message.editReply({ embeds: [{ description: e, color: "#C73829" }] });
+        return this.message.editReply({ embeds: [{ description: "<:social_error:968882669045813278>" + e, color: "#C73829" }] });
     }
-    succes(e) {
-        return this.message.editReply({ embeds: [{ description: e, color: "#3A871F" }] });
+    success(e) {
+        return this.message.editReply({ embeds: [{ description: "<:social_success:968849497075642380> " + e, color: "#ff5858" }] });
     }
 }
 module.exports = Context;
