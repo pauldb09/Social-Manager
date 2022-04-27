@@ -20,10 +20,11 @@ class Ready extends BaseEvent {
                         name: `${ban.user.tag} (${ban.user.id})`,
                         icon_url: ban.user.avatarURL()
                     },
+                    description: `**${ban.user.tag}** has been banned from the server.\n\n**<:unknown43:968885935204872202> Reason:** ${ban.reason ? ban.reason : "No reason given"}`,
+                    color: "#ff5858",
+                    timestamp: new Date(),
                 }],
-                description: `**${ban.user.tag}** has been banned from the server.\n\n**<:unknown43:968885935204872202> Reason:** ${ban.reason ? ban.reason : "No reason given"}`,
-                color: "#ff5858",
-                timestamp: new Date(),
+
             })
         }
     }
