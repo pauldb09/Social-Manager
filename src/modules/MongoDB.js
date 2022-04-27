@@ -19,7 +19,7 @@ class MongoDB {
             })
             .then(() => {
                 this.state = 2;
-                console.log("MongoDB:`, `Connected");
+                console.log("MongoDB database successfully connected");
                 return mongoose
             });
     }
