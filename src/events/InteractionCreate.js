@@ -40,9 +40,9 @@ class Ready extends BaseEvent {
                 if (interaction.customId.startsWith("delete_case_")) {
                     const case_id = interaction.customId.split("_")[2];
                     const del = await this.client.database.removeCase(case_id, serverData, context);
-                    if (del) {
+                    if (del && del !== "not found") {
                         context.success(context.translate("CASE_DELETED").replace(`{case}`, case_id));
-                    } else if (del == "not found") {
+                    } else if (del === "not found") {
                         context.err(context.translate("CASE_NOT_FOUND"));
                     } else {
                         context.err(context.translate("CASE_ERROR"));
