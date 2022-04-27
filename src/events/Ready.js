@@ -9,6 +9,7 @@ class Ready extends BaseEvent {
     }
 
     async run() {
+
         this.client.user.setActivity({ name: "/help - social-manager.net", type: "WATCHING" });
         setInterval(() => {
             this.client.user.setActivity("/help - social-manager.net", { type: "WATCHING" });
