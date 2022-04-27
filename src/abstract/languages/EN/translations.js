@@ -17,5 +17,14 @@ module.exports = {
         NO_REASON: "No reason provided by {user}.",
         BANNED_DM: "You have been banned from",
         BANNED_SUCCESS: "Successfully banned **{user}** from the server and deleted his messages from the last *{days}* days.",
+        CHANNEL_NOT_FOUND: "The channel you provided is not found in the server.",
+        CHANNEL_NO_PERMISSIONS: "The bot doesn't have the required permissions to send messages in this channel.\n Please make sure the bot has the following permissions: `Send messages`, `Embed Links`, `View channels`",
+        CHANNEL_NOT_TEXT: "The channel you provided is not a text channel.",
+        PLUGIN_NOT_ENABLED: "The plugin you want to disable is not enabled.",
+        CHANNEL_ALREADY_SET: "The channel you provided is already the channel set for this plugin.",
+        SAME_SETTINGS_MODLOGS: "The settings you provided are the same as the current settings.",
+        SET_THREAD_MODLOGS: "The modlogs plugin has been set to send a thread for each case.",
+        SET_NO_THREAD_MODLOGS: "The modlogs plugin has been set to not send a thread for each case.",
+        SET_MODLOGS: "The modlogs plugin has been successfully configured in {channel}.",
     }
 }

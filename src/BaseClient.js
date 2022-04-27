@@ -7,7 +7,7 @@ const ClientError = require("./modules/ClientError");
 const EventHandler = require("./modules/EventHandler");
 
 class BaseClient extends Client {
-    constructor() {
+    constructor(options) {
         super({
             disableMentions: "everyone",
             restRequestTimeout: 4e4,
@@ -18,6 +18,7 @@ class BaseClient extends Client {
         });
 
         this._ready = true;
+        this.validTexts = options.validText;
         this.location = process.cwd();
         this.database = new Database(this);
         this.commands = new CommandService(this);
