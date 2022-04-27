@@ -1,16 +1,16 @@
 const KongouCommand = require("../../abstract/KongouCommand.js");
 class Help extends KongouCommand {
     get name() {
-        return "help";
+        return "ban";
     }
     get category() {
-        return "Everyone Commands";
+        return "Moderation0";
     }
     get aliases() {
         return ["h", "commands", "command"];
     }
     get description() {
-        return "Displays all the commands of the bot. If you provide the name of a commands, it will return all available information about this command.";
+        return "Bans someone from the server.";
     }
     get arguments() {
         return [{ name: "user", description: "The user you want to ban from the server", required: true }];

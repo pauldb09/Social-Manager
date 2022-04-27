@@ -1,5 +1,4 @@
 "use strict";
-const config = require("../../config");
 const { getFile } = require("../abstract/languages")
 class Context {
     constructor(e, s, t, r) {

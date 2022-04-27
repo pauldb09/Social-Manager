@@ -1,7 +1,9 @@
 const { readdirSync } = require("fs");
 class EventHandler {
     constructor(e) {
-        (this.client = e), (this.built = !1);
+        this.client = e;
+        this.built = !1;
+        this.build();
     }
     build() {
         if (this.built) return this;
