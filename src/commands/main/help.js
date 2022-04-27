@@ -1,19 +1,20 @@
-const KongouCommand = require("../../abstract/KongouCommand.js");
-class Help extends KongouCommand {
+const BaseCommand = require("../../abstract/BaseCommand.js");
+class Help extends BaseCommand {
     constructor(client) {
         super({
             name: "help",
             category: "main",
-            description: "Displays all the commands of the bot. If you provide the name of a commands, it will return all available information about this command.",
+            description: "Displays all the commands of the bot. ",
             arguments: [
-                { name: "command", description: "The command you want to have informations", required: true, type: 3 }
+                { name: "command", description: "The command you want to have informations", required: false, type: 3 }
             ],
         });
 
         this.client = client;
     }
 
-    run({ ctx: e }) {
+    run(e) {
+        console.log(e.member)
         if (!e.args[0]) {
             let sent = false;
             e.member.send({
@@ -31,10 +32,11 @@ class Help extends KongouCommand {
                     ],
                     type: 'ACTION_ROW'
                 }]
-            }).catch(() => {
+            }).catch((e) => {
+                console.log(e)
                 sent = false
             })
-            if (sent) e.err(e.translate("HELP_SENT_DM"))
+            if (sent) e.success(e.translate("HELP_SENT_DM"))
             else e.err(e.translate("HELP_SENT_DM_FAILED"))
         } else {
 

@@ -1,6 +1,10 @@
-class BaseCommand {
-    constructor(o) {
-        if (((this.client = o), this.constructor === BaseCommand)) throw new TypeError('Abstract class "BaseCommand" cannot be instantiated directly.');
+const EventEmitter = require("events");
+class BaseCommand extends EventEmitter {
+    constructor(command) {
+        super();
+        this.name = command.name;
+        this.description = command.description;
+        this.arguments = command.arguments;
     }
     get permissions() {
         return null;

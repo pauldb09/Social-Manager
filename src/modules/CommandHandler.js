@@ -16,7 +16,7 @@ class CommandHandler {
                 this.commands.set(n.name, n);
             }
         }
-        return this;
+        return this.commands;
     }
 }
 module.exports = CommandHandler;
