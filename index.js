@@ -1,3 +1,3 @@
-const { token: token } = require("./config.js"), { Manager: Manager } = require("discord-hybrid-sharding"),
-    manager = new Manager("./src/cluster.js", { mode: "process", token: token });
+const { token } = require("./config.js"), { Manager } = require("discord-hybrid-sharding");
+const manager = new Manager("./src/cluster.js", { mode: "process", token: token });
 manager.spawn({ timeout: -1 });
