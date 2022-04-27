@@ -39,7 +39,10 @@ module.exports = {
         NUKED_BY: "Nuked by {user}",
         SET_AUTOPOST: "The Auto-Publish plugin has been successfully configured in {channel}.\nThe bot will now automatically publish every single message from this channel.",
         PLUGIN_DISABLED: "Successfuly disabled this plugin!",
-        REMOVE_CASE: "Remove case"
-
+        REMOVE_CASE: "Remove case",
+        CASE_DELETED: "Successfully deleted case {case}.",
+        CASE_ERROR: "The case has been removed from the database but i'm not able to unpunish the user.",
+        UNEXPECTED_ERROR: "An unexpected error has occured while running your interaction! Please report this error in [Social Manager's server](https://social-manager.net/support)",
+        CASE_NOT_FOUND: "No case found with this Id."
     }
 }

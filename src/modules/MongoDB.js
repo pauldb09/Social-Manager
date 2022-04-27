@@ -24,12 +24,19 @@ class MongoDB {
             });
     }
 
-    async removeCase(
-        case, guildDB) {
-        guildDB.cases = guildDB.cases.filter(c => c.id !==
-            case .id);
+    async removeCase(data, guildDB, guild, tag) {
+        const found = guildDB.cases.find(c => c.id === data);
+        let succes = true;
+        if (!found) return "not found"
+        if (found.type === "BAN") {
+            guild.bans.remove(found.data.target.id, e.translate("CASE_REMOVED").replace("{user}", tag)).catch(err => {
+                console.error(err)
+                succes = false
+            })
+        }
+        guildDB.cases = guildDB.cases.filter(c => c.id !== data);
         this.handleCache(guildDB);
-        return guildDB;
+        return succes;
     }
 
     async generateCase(data, ctx) {
@@ -58,8 +65,8 @@ class MongoDB {
                                 timestamp: new Date(),
                             }],
                             components: [{
-                                type: "ACTION_ROW",
-                                components: [{ customId: "delete_case_" + case_id + "", style: 4, label: ctx.translate("REMOVE_CASE") }]
+                                type: 'ACTION_ROW',
+                                components: [{ type: "BUTTON", customId: "delete_case_" + case_id + "", style: 4, label: ctx.translate("REMOVE_CASE") }]
                             }]
 
                         }, ))
@@ -81,7 +88,7 @@ class MongoDB {
                         }],
                         components: [{
                             type: "ACTION_ROW",
-                            components: [{ customId: "clear_case_" + case_id + "", style: 4, label: ctx.translate("REMOVE_CASE") }]
+                            components: [{ customId: "delete_case_" + case_id + "", style: 4, label: ctx.translate("REMOVE_CASE") }]
                         }]
 
                     })
