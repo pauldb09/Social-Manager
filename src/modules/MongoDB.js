@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
     guildData = require("../models/guildData"),
     config = require("../../config");
-const uuidv4 = require("uuid/v4");
+const uuidv4 = require("uuidv4");
 
 class MongoDB {
     constructor(client) {
