@@ -27,27 +27,27 @@ class Ban extends BaseCommand {
         if (!["GUILD_TEXT", "GUILD_NEWS"].includes(channel.type)) return e.err(e.translate("CHANNEL_NOT_TEXT"));
         const position = channel.position;
         const topic = channel.topic;
-        const channel2 = await channel.clone();
+        channel.delete()
 
-        channel2.setPosition(position);
-        channel2.setTopic(topic);
-        channel2.send({
-            embeds: [{
-                author: {
-                    name: `${e.guild.name}`,
-                    icon_url: e.guild.iconURL()
-                },
-                description: e.translate("CHANNEL_NUKED"),
-                color: "#ff5858",
-                footer: {
-                    text: `${ctx.translate("NUKED_BY").replace("{user}", e.author.tag)}`
-                },
-                timestamp: new Date(),
-            }],
+        setTimeout(async() => {
+            const channel2 = await channel.clone();
+            channel2.setPosition(position);
+            channel2.setTopic(topic);
+            channel2.send({
+                embeds: [{
+                    author: {
+                        name: `${e.guild.name}`,
+                        icon_url: e.guild.iconURL()
+                    },
+                    description: e.translate("CHANNEL_NUKED"),
+                    color: "#ff5858",
+                    footer: {
+                        text: `${e.translate("NUKED_BY").replace("{user}", e.author.tag)}`
+                    },
+                    timestamp: new Date(),
+                }],
 
-        })
-        setTimeout(() => {
-            channel.delete()
+            })
         }, 1000);
 
     }
