@@ -28,7 +28,7 @@ class MongoDB {
         const found = guildDB.cases.find(c => c.id === data);
         let succes = true;
         if (!found) return "not found"
-        if (found.type === "BAN") {
+        if (found.data.type === "BAN") {
             guild.bans.remove(found.data.target.id, e.translate("CASE_REMOVED").replace("{user}", tag)).catch(err => {
                 console.error(err)
                 succes = false
