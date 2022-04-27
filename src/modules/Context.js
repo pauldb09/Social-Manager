@@ -10,6 +10,9 @@ class Context {
     get channel() {
         return this.message.channel;
     }
+    get clientUser() {
+        return this.message.client.user
+    }
     get author() {
         return this.message.member.user;
     }
@@ -37,7 +40,7 @@ class Context {
     get user() {
         return this.message.options.length > 0 ? this.message.options.getMember("member") : null;
     }
-    errorMessage(e) {
+    err(e) {
         return this.message.editReply({ embeds: [{ description: e, color: "#C73829" }] });
     }
     successMessage(e) {
