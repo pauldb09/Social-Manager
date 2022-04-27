@@ -18,8 +18,9 @@ class Help extends KongouCommand {
     run({ ctx: e }) {
         let sent = false;
         e.member.send({
-                embeds: [{})
-                e.reply(e.translate("HELP_SENT_DM"))
-            }
-        }
-        module.exports = Help;
+            embeds: []
+        });
+        e.reply(e.translate("HELP_SENT_DM"))
+    }
+}
+module.exports = Help;
