@@ -12,7 +12,7 @@ class CommandHandler {
             const n = readdirSync(`${this.client.location}/src/commands/${i.name}`, { withFileTypes: !0 });
             for (const o of n) {
                 if (!o.isFile()) continue;
-                const n = new(require(`${this.client.location}/src/commands/${i.name}/${o.name}`))();
+                const n = new(require(`${this.client.location}/src/commands/${i.name}/${o.name}`))(this.client);
                 this.commands.set(n.name, n);
             }
         }

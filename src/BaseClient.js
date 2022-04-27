@@ -1,5 +1,5 @@
 const { Client, Intents } = require("discord.js");
-const { GUILDS, GUILD_VOICE_STATES, GUILD_MESSAGES } = Intents.FLAGS;
+const { GUILDS, GUILD_VOICE_STATES, GUILD_MESSAGES, GUILD_BANS } = Intents.FLAGS;
 const Cluster = require("discord-hybrid-sharding")
 const Database = require("./modules/MongoDB");
 const CommandService = require("./modules/CommandHandler");
@@ -14,7 +14,7 @@ class BaseClient extends Client {
             restTimeOffset: 600,
             shards: Cluster.data.SHARD_LIST,
             shardCount: Cluster.data.TOTAL_SHARDS,
-            intents: [GUILDS, GUILD_VOICE_STATES, GUILD_MESSAGES]
+            intents: [GUILDS, GUILD_VOICE_STATES, GUILD_MESSAGES, GUILD_BANS]
         });
 
         this._ready = true;
@@ -46,10 +46,10 @@ class BaseClient extends Client {
     async start(options) {
         if (!options) throw new ClientError("No options provided.");
         this.login(options.token).catch(err => {
-            this.ready = false
+            this._ready = false
             console.log(err)
         })
-        if (this.ready) return this
+        if (this._ready) return this
         else throw new ClientError("Client can't enter ready do to some errors;")
     }
 
