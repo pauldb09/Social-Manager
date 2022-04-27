@@ -19,15 +19,28 @@ class MongoDB {
             })
             .then(() => {
                 this.state = 2;
-                console.log("MongoDB database successfully connected");
+                console.log("MongoDB:`, `Connected");
                 return mongoose
             });
+    }
+
+    async handleCache(newData) {
+        if (!this.knowGuilds.includes(newData.serverId)) return null;
+        this.knowGuilds[newData.serverId] = newData;
+        newData.save();
+        return newData;
     }
 
     async getServer(serverId) {
         if (this.state !== 2) return console.error("[MongoDB] Error: MongoDB is not connected.");
         if (this.knowGuilds.includes(serverId)) return this.knowGuilds[serverId];
         let o = await guildData.findOne({ serverId: serverId });
+        if (o) {
+            this.knowGuilds[serverId] = o;
+            setTimeout(() => {
+                delete this.knowGuilds[serverId];
+            }, 1000 * 60 * 60);
+        }
         return o || (o = await new guildData({ serverId: serverId }).save()), o;
     }
 }
