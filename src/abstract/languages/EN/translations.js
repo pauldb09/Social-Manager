@@ -12,5 +12,10 @@ module.exports = {
         SUPPORT_SERVER: "Support Server",
         USER_GUIDE: "User Guide",
         USER_NOT_BANABLE: "This user can't be banned from the server.",
+        USER_HIGHER_ROLE: "This user has a higher role than you.",
+        BOT_CANT_BAN: "I can't ban this user because his higest role is above my higest role.",
+        NO_REASON: "No reason provided by {user}.",
+        BANNED_DM: "You have been banned from",
+        BANNED_SUCCESS: "Successfully banned **{user}** from the server and deleted his messages from the last *{days}* days.",
     }
 }
