@@ -42,8 +42,8 @@ class Ban extends BaseCommand {
         if (e.options.getBoolean("automod")) {
             await member.send({
                 embeds: [{
-                    author: { name: e.translate("KICKED_DM") + e.guild.name, icon_url: e.guild.iconURL({ format: "png", size: 512 }) },
-                    description: e.translate("KICKED_DM_BODY").replace("{mod}", e.author.username).replace("{reason}", reason),
+                    author: { name: e.translate("WARNED_DM") + e.guild.name, icon_url: e.guild.iconURL({ format: "png", size: 512 }) },
+                    description: e.translate("WARNED_DM_BODY").replace("{mod}", e.author.username).replace("{reason}", reason),
                     color: "#ff5858",
 
                 }]
@@ -63,9 +63,9 @@ class Ban extends BaseCommand {
             },
             type: "WARN",
             reason: reason,
-            text: e.translate("KICK_CASE_TEXT").replace("{user}", member.user.tag).replace("{mod}", e.author.tag),
+            text: e.translate("WARN_CASE_TEXT").replace("{user}", member.user.tag).replace("{mod}", e.author.tag),
         }, e)
-        e.success(e.translate("KICKED_SUCCESS").replace("{user}", member.user.tag).replace("{days}", days));
+        e.success(e.translate("WARN_SUCCESS").replace("{user}", member.user.tag).replace("{days}", days).replace("{warns}", e.guildDB.cases.filter(x => x.data.target.id === user.id && x.data.type === "WARN").length));
     }
 }
 module.exports = Ban;
