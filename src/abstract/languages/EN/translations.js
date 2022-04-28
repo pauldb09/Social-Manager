@@ -12,6 +12,8 @@ module.exports = {
         SUPPORT_SERVER: "Support Server",
         USER_GUIDE: "User Guide",
         USER_NOT_BANABLE: "This user can't be banned from the server.",
+        USER_NOT_WARNABLE: "This user can't be warned.",
+
         USER_HIGHER_ROLE: "This user has a higher role than you.",
         BOT_CANT_BAN: "I can't ban this user because his higest role is above my higest role.",
         NO_REASON: "No reason provided by {user}.",
@@ -28,11 +30,15 @@ module.exports = {
         SET_MODLOGS: "The modlogs plugin has been successfully configured in {channel}.",
         KICKED_DM: "You have been kicked from ",
         KICKED_SUCCESS: "Successfully kicked **{user}** from the server.",
+        WARN_SUCCESS: "Successfully warned **{user}**. he has now **{warns}** warning(s).",
         REASON: "Reason",
         CASE_ID: "Case ID",
+        WARN_CASE_TEXT: "**{user}** has been warned by **{mod}**.",
         BAN_CASE_TEXT: "**{user}** has been banned from the server by **{mod}**.",
         KICK_CASE_TEXT: "**{user}** has been kicked from the server by **{mod}**.",
         CREATE_THREAD_REASON: "Created the thread because modlogs plugin is active",
+        WARNED_DM_BODY: `You have been warned by **{mod}** for the reason: **{reason}**`,
+        WARNED_DM: "You have been warned on",
         BANNED_DM_BODY: `You have been banned by **{mod}** for the reason: **{reason}**`,
         KICKED_DM_BODY: `You have been kicked by **{mod}** for the reason: **{reason}**`,
         CHANNEL_NUKED: "<:unknown43:968885935204872202> The channel has been successfuly nuked.",
@@ -45,6 +51,8 @@ module.exports = {
         UNEXPECTED_ERROR: "An unexpected error has occured while running your interaction! Please report this error in [Social Manager's server](https://social-manager.net/support)",
         CASE_NOT_FOUND: "No case found with this Id.",
         CASE_REMOVED: `Case deleted by {user}`,
-        NUKE_CASE_TEXT: `**{user}** just nuked the {channel} channel`
+        NUKE_CASE_TEXT: `**{user}** just nuked the {channel} channel`,
+        SET_BOTLOGS: "The bot will now use the {channel} channel to send errors/notifications.",
+
     }
 }

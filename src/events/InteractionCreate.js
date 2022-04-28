@@ -41,6 +41,8 @@ class Ready extends BaseEvent {
                     const case_id = interaction.customId.split("_")[2];
                     const del = await this.client.database.removeCase(case_id, serverData, context);
                     if (del && del !== "not found") {
+                        console.log( interaction.channel.type)
+                        if(interaction.channel.type ==="GUILD_NEWS_THREAD" ||interaction.channel.type ==="GUILD_PUBLIC_THREAD" || interaction.channel.type ==="GUILD_PRIVATE_THREAD") interaction.channel.delete()
                         context.success(context.translate("CASE_DELETED").replace(`{case}`, case_id));
                     } else if (del === "not found") {
                         context.err(context.translate("CASE_NOT_FOUND"));

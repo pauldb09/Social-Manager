@@ -14,7 +14,7 @@ class Ready extends BaseEvent {
 
         const serverData = await this.client.database.getServer(message.guildId)
         if (serverData.autopost && serverData.autopost === message.channel.id) {
-            if (!e.crosspostable) {
+            if (!message.crosspostable) {
                 if (serverData.botChannel) {
                     const botChannel = message.guild.channels.cache.get(serverData.botChannel)
                     if (botChannel) {

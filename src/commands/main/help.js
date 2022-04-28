@@ -24,7 +24,10 @@ class Help extends BaseCommand {
                     },
                     description: e.translate("HELP_MAIN"),
                     color: "#ff5858",
-
+fields:[{
+    name:"Command List",
+    value:this.client.commands.commands.map(cmd=>`\`${cmd.name}\``).join(", ")
+}]
                 }],
                 components: [{
                     components: [
@@ -35,10 +38,13 @@ class Help extends BaseCommand {
                 }]
             }).catch((err) => {
                 console.log(err)
-                sent = false
+                sent = null
             })
-            if (sent) e.success(e.translate("HELP_SENT_DM"))
-            else e.err(e.translate("HELP_SENT_DM_FAILED"))
+            .then(()=>{
+                if (sent) e.success(e.translate("HELP_SENT_DM"))
+                else e.err(e.translate("HELP_SENT_DM_FAILED"))
+            })
+      
         } else {
 
         }
