@@ -39,7 +39,6 @@ class Ban extends BaseCommand {
         const moderationPosition = e.member.roles.highest.position;
         if (!(moderationPosition > memberPosition)) return e.err(e.translate("USER_HIGHER_ROLE"));
         const reason = e.options.getString("reason") ? e.options.getString("reason") : e.translate("NO_REASON").replace("{user}", e.author.username);
-        if (e.options.getBoolean("automod")) {
             await member.send({
                 embeds: [{
                     author: { name: e.translate("WARNED_DM") + e.guild.name, icon_url: e.guild.iconURL({ format: "png", size: 512 }) },
@@ -48,7 +47,6 @@ class Ban extends BaseCommand {
 
                 }]
             })
-        }
 
         this.client.database.generateCase({
             target: {
@@ -65,7 +63,7 @@ class Ban extends BaseCommand {
             reason: reason,
             text: e.translate("WARN_CASE_TEXT").replace("{user}", member.user.tag).replace("{mod}", e.author.tag),
         }, e)
-        e.success(e.translate("WARN_SUCCESS").replace("{user}", member.user.tag).replace("{days}", days).replace("{warns}", e.guildDB.cases.filter(x => x.data.target.id === user.id && x.data.type === "WARN").length));
+        e.success(e.translate("WARN_SUCCESS").replace("{user}", member.user.tag).replace("{warns}", e.guildDB.cases.filter(x => x.data.target.id === user.id && x.data.type === "WARN").length));
     }
 }
 module.exports = Ban;

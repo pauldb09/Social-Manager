@@ -30,7 +30,7 @@ module.exports = {
         SET_MODLOGS: "The modlogs plugin has been successfully configured in {channel}.",
         KICKED_DM: "You have been kicked from ",
         KICKED_SUCCESS: "Successfully kicked **{user}** from the server.",
-        WARN_SUCCESS: "Successfully warned **{user}** he has **{warns}** warnings.",
+        WARN_SUCCESS: "Successfully warned **{user}**. he has now **{warns}** warning(s).",
         REASON: "Reason",
         CASE_ID: "Case ID",
         WARN_CASE_TEXT: "**{user}** has been warned by **{mod}**.",
@@ -51,6 +51,8 @@ module.exports = {
         UNEXPECTED_ERROR: "An unexpected error has occured while running your interaction! Please report this error in [Social Manager's server](https://social-manager.net/support)",
         CASE_NOT_FOUND: "No case found with this Id.",
         CASE_REMOVED: `Case deleted by {user}`,
-        NUKE_CASE_TEXT: `**{user}** just nuked the {channel} channel`
+        NUKE_CASE_TEXT: `**{user}** just nuked the {channel} channel`,
+        SET_BOTLOGS: "The bot will now use the {channel} channel to send errors/notifications.",
+
     }
 }
